@@ -27,7 +27,7 @@ export default function MapView() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/reports').then(res => setReports(res.data))
+    axios.get('https://smartroad-backend-4xzz.onrender.com/api/reports').then(res => setReports(res.data))
   }, [])
 
   return (
@@ -49,7 +49,7 @@ export default function MapView() {
             <Popup>
               <div style={{minWidth:'200px'}}>
                 <h3 style={{margin:'0 0 8px'}}>{report.title}</h3>
-                {report.photoUrl && <img src={`http://localhost:5000${report.photoUrl}`} style={{width:'100%',borderRadius:'4px',marginBottom:'8px'}} />}
+                {report.photoUrl && <img src={`https://smartroad-backend-4xzz.onrender.com${report.photoUrl}`} style={{width:'100%',borderRadius:'4px',marginBottom:'8px'}} />}
                 <p style={{margin:'4px 0',fontSize:'13px'}}>📍 {report.latitude.toFixed(4)}, {report.longitude.toFixed(4)}</p>
                 <p style={{margin:'4px 0',fontSize:'13px'}}>⚠️ Severity: <b>{report.severity}</b></p>
                 <p style={{margin:'4px 0',fontSize:'13px'}}>📊 Status: <b>{report.status}</b></p>

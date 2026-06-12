@@ -31,7 +31,7 @@ export default function ReportForm() {
       data.append('longitude', location.lng)
       if (photo) data.append('photo', photo)
 
-      await axios.post('http://localhost:5000/api/reports', data, {
+      await axios.post('https://smartroad-backend-4xzz.onrender.com/api/reports', data, {
         headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'multipart/form-data' }
       })
       setSuccess(true)

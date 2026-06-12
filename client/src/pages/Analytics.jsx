@@ -7,7 +7,7 @@ export default function Analytics() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/reports').then(res => setReports(res.data))
+    axios.get('https://smartroad-backend-4xzz.onrender.com/api/reports').then(res => setReports(res.data))
   }, [])
 
   const total = reports.length

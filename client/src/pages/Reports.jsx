@@ -15,7 +15,7 @@ export default function Reports() {
 
   const fetchReports = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/reports')
+      const res = await axios.get('https://smartroad-backend-4xzz.onrender.com/api/reports')
       setReports(res.data)
     } catch (err) {
       alert('Failed to fetch reports')
@@ -25,7 +25,7 @@ export default function Reports() {
 
   const handleUpvote = async (id) => {
     try {
-      await axios.post(`http://localhost:5000/api/reports/${id}/upvote`, {}, {
+      await axios.post(`https://smartroad-backend-4xzz.onrender.com/api/reports/${id}/upvote`, {}, {
         headers: { Authorization: `Bearer ${token}` }
       })
       fetchReports()
@@ -36,7 +36,7 @@ export default function Reports() {
 
   const handleStatusChange = async (id, status) => {
     try {
-      await axios.patch(`http://localhost:5000/api/reports/${id}/status`, { status }, {
+      await axios.patch(`https://smartroad-backend-4xzz.onrender.com/api/reports/${id}/status`, { status }, {
         headers: { Authorization: `Bearer ${token}` }
       })
       fetchReports()
@@ -49,7 +49,7 @@ export default function Reports() {
     try {
       const data = new FormData()
       data.append('photo', file)
-      await axios.post(`http://localhost:5000/api/reports/${id}/after-photo`, data, {
+      await axios.post(`https://smartroad-backend-4xzz.onrender.com/api/reports/${id}/after-photo`, data, {
         headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'multipart/form-data' }
       })
       fetchReports()
@@ -90,7 +90,7 @@ export default function Reports() {
         {reports.map(report => (
           <div key={report.id} style={styles.card}>
             {report.photoUrl && (
-              <img src={`http://localhost:5000${report.photoUrl}`} alt="pothole" style={styles.photo} />
+              <img src={`https://smartroad-backend-4xzz.onrender.com${report.photoUrl}`} alt="pothole" style={styles.photo} />
             )}
             <div style={styles.cardBody}>
               <div style={styles.badges}>
@@ -132,7 +132,7 @@ export default function Reports() {
                 {report.afterPhotoUrl && (
                   <div style={{marginTop:'8px',width:'100%'}}>
                     <p style={{fontSize:'12px',color:'#48bb78',fontWeight:'bold'}}>✅ After Photo (Verified)</p>
-                    <img src={`http://localhost:5000${report.afterPhotoUrl}`} style={{width:'100%',borderRadius:'8px'}} />
+                    <img src={`https://smartroad-backend-4xzz.onrender.com${report.afterPhotoUrl}`} style={{width:'100%',borderRadius:'8px'}} />
                   </div>
                 )}
               </div>
