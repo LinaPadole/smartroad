@@ -1,0 +1,49 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  password  String
+  role      String   @default("citizen")
+  createdAt DateTime @default(now())
+  reports   Report[]
+  upvotes   Upvote[]
+}
+
+model Report {
+  id            Int      @id @default(autoincrement())
+  title         String
+  description   String
+  latitude      Float
+  longitude     Float
+  severity      String   @default("medium")
+  status        String   @default("reported")
+  photoUrl      String?
+  afterPhotoUrl String?
+  budgetEstimate Float   @default(0)
+  roadScore     Float    @default(100)
+  userId        Int
+  user          User     @relation(fields: [userId], references: [id])
+  upvotes       Upvote[]
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Upvote {
+  id       Int    @id @default(autoincrement())
+  userId   Int
+  reportId Int
+  user     User   @relation(fields: [userId], references: [id])
+  report   Report @relation(fields: [reportId], references: [id])
+
+  @@unique([userId, reportId])
+}
